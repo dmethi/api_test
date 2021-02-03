@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :cage do
     capacity {Faker::Number.within(range:30..50)}
-    state {Faker::Boolean.boolean}
+    status {'ACTIVE'}
     num_dinos {0}
   end
 end

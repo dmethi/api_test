@@ -2,15 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Cages API', type: :request do
   #initialize test data
-  let!(:cages) {create_list(:cage, 10)}
+  let!(:cages) { create_list(:cage, 10)}
   let(:cage_id) {cages.first.id}
-
   # Test suite for GET/cages
   describe 'GET /cages' do
     before {get '/cages'}
 
     it 'returns cages' do
-      expect(json).not_to_be_empty
       expect(json.size).to eq(10)
     end
 
@@ -20,10 +18,11 @@ RSpec.describe 'Cages API', type: :request do
 
   end
 
+
   # Test suite for POST/cages
   describe 'POST /cages' do
     # test valid attributes
-    let(:valid_attributes) { {capacity: 25, state: false, num_dinos: 0} }
+    let(:valid_attributes) { {capacity: 25, status: 'DOWN', num_dinos: 0} }
 
     context 'when the request is valid' do
       before { post '/cages', params: valid_attributes }
@@ -38,7 +37,7 @@ RSpec.describe 'Cages API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before {post '/cages', params: {state: false, num_dinos: 0} }
+      before {post '/cages', params: {status: 'DOWN', num_dinos: 0} }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
@@ -54,22 +53,18 @@ RSpec.describe 'Cages API', type: :request do
 
   # Test suite for PUT/cages/:id
   describe 'PUT /cages/:id' do
-    let(:valid_attributes) {{capacity: 30}}
+    let(:valid_attributes) {{capacity: 15}}
 
     context 'when the record exists' do
-      before {put '/cages/#{cage_id}', params: valid_attributes}
+      before {put "/cages/#{1}", params: valid_attributes}
 
-      it 'updates the record' do
-        expect(response.body).to be_empty
-      end
-
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'updates capacity to 15' do
+        expect(json['capacity']).to eq(15)
       end
     end
 
     context 'when the record does not exist' do
-      before {put '/cages/#{38192}', params: valid_attributes}
+      before {put "/cages/#{38192}", params: valid_attributes}
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -77,13 +72,14 @@ RSpec.describe 'Cages API', type: :request do
     end
   end
 
+
   # Test suite for GET/cages/:id
   describe 'GET /cages/:id' do
-    before {get 'cages/#{cage_id}'}
+    before {get "/cages/#{cage_id}"}
 
     context 'when the record exists' do
       it 'returns the cage' do
-        expect(json).not_to_be_empty
+        expect(json).not_to be_empty
         expect(json['id']).to eq(cage_id)
       end
 
@@ -107,7 +103,7 @@ RSpec.describe 'Cages API', type: :request do
 
   # Test suite for DELETE/cages/:id
   describe 'DELETE /cages/:id' do
-    before {delete '/cages/#{cage_id}'}
+    before {delete "/cages/#{cage_id}"}
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
