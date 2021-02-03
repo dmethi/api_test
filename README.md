@@ -6,7 +6,7 @@ This is an API for managing a system of cages and dinosaurs at Jurassic Park. To
 * Moving dinosaurs between cages (easier if there's no fixed foreign key); additionally, dinosaurs don't necessarily have to be in a cage at all times (in transit, released into the wild, in different attractions at the park, etc.)
 
 ### Model Overview ###
-#### Dinosaurs####
+#### Dinosaurs ####
 Dinosaurs are defined as having the following attributes:
 * Name (string)
 * Species (string)
