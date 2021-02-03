@@ -1,4 +1,4 @@
-require 'rails-helper'
+require 'rails_helper'
 
 RSpec.describe 'Cages API', type: :request do
   #initialize test data

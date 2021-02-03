@@ -91,7 +91,7 @@ RSpec.describe 'Dinsoaurs API' do
 
       it 'updates the dinosaur' do
         updated_dinosaur = Dinosaur.find(id)
-        expect(updated_dinosaur.name)to match(/dmeth/)
+        expect(updated_dinosaur.name).to match(/dmeth/)
       end
     end
 
