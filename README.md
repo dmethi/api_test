@@ -32,6 +32,7 @@ This API will expose the following RESTful endpoints:
 | GET /dinosaurs | List all dinosaurs in the park |
 | POST /dinosaurs | Add/Import a new dinosaur to Jurassic Park |
 | POST /dinosaurs/filter | Filter dinosaurs by parameters |
+| POST /dinosaurs/add_to_cage | Move dinosaur to designated cage |
 | GET /dinosaurs/:id | Show the details of a specific dinosaur |
 | PUT /dinosaurs/:id | Update a specific dinosaur |
 | DELETE /dinosaurs/:id | Remove a specific dinosaur from Jurassic Park |
@@ -45,5 +46,6 @@ This section addresses any unimplemented features as well as how I would handle 
 #### Features ####
 * User authentication - One feature that I didn't implement is user authentication. If this application were to be actually used/deployed, as per the specifications, some functionality (specifically editing cage statuses and moving dinosaurs) should be restricted to only doctors and scientists. It is very likely that there are more users that will be using the system (businessmen, janitors, support staff, etc.) and these users should not be able to edit dinosaurs/cages, etc.
 * Enumerated types for species - Given that species names are long (and easy to misspell), there should be a specific set of species that are allowed to be picked/chosen when creating/adding a dinosaur to the system. If not having enumerated types, the entered species should be checked against a database of species names to ensure it is a valid species. Right now, this functionality is not implemented.
+* Testing for the filter functions on both dinosaurs and cages - since I was using a factory and faker with random attributes, fully testing the filter functions wouldn't have been possible with the random data. I could have manually created a bunch of test cases and used those in the tests, but I just decided to manually test out the functions (lazy, I know). 
 #### Concurrency ####
 The biggest issue with concurrency is when two users on the API access an object (cage or dinosaur) at the same time and edit it concurrently. To prevent this from happening, a functionality should that checks the "Modified At" attribute of the object to ensure that it hasn't changed from the time it was accessed. If it has changed, an error message should be returned to the user indicating that the object was unable to be edited.
