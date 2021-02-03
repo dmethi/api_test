@@ -32,7 +32,7 @@ RSpec.describe 'Dinsoaurs API' do
 
   # Test suite for POST/dinosaurs
   describe 'POST /dinosaurs' do
-    let(:valid_attributes) { {name: 'Joe',  species: 'T-rex', diet: false, cage: 0} }
+    let(:valid_attributes) { {name: 'Joe',  species: 'T-rex', is_carnivore: false, cage: 0} }
 
     context 'when request attributes are valid' do
       before { post '/dinosaurs', params: valid_attributes}

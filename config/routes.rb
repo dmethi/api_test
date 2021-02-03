@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :cages
   resources :dinosaurs
 
+  post 'cages/filter', to: 'cages#filter'
 end

@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_02_03_170052) do
 
   create_table "cages", force: :cascade do |t|
     t.integer "capacity"
-    t.boolean "state"
+    t.string "status"
     t.integer "num_dinos"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 2021_02_03_170052) do
   create_table "dinosaurs", force: :cascade do |t|
     t.string "name"
     t.string "species"
-    t.boolean "diet"
-    t.integer "cage_id"
+    t.boolean "is_carnivore"
+    t.integer "cage"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cage_id"], name: "index_dinosaurs_on_cage_id"
   end
+
 end

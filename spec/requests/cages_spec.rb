@@ -23,7 +23,7 @@ RSpec.describe 'Cages API', type: :request do
   # Test suite for POST/cages
   describe 'POST /cages' do
     # test valid attributes
-    let(:valid_attributes) { {capacity: 25, state: false, num_dinos: 0} }
+    let(:valid_attributes) { {capacity: 25, status: 'DOWN', num_dinos: 0} }
 
     context 'when the request is valid' do
       before { post '/cages', params: valid_attributes }
@@ -38,7 +38,7 @@ RSpec.describe 'Cages API', type: :request do
     end
 
     context 'when the request is invalid' do
-      before {post '/cages', params: {state: false, num_dinos: 0} }
+      before {post '/cages', params: {status: 'DOWN', num_dinos: 0} }
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
