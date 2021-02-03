@@ -10,12 +10,12 @@ This is an API for managing a system of cages and dinosaurs at Jurassic Park. To
 Dinosaurs are defined as having the following attributes:
 * Name (string)
 * Species (string)
-* Diet (boolean) - If this is true, the dinosaur is a carnivore. If this is false, the dinosaur is a herbivore.
+* Is_carnivore (boolean) - If this is true, the dinosaur is a carnivore. If this is false, the dinosaur is a herbivore.
 * Cage (integer) - Represents the ID of the cage that it belongs in. If the value is 0, that means that the dinosaur is not in a cage at the moment.
 #### Cages ####
 Cages are defined as having the following attributes:
 * Capacity (integer)
-* State (boolean) - If this is true, then the cage is powered on. If this is false, the cage is powered off.
+* Status (string) - Can either be 'ACTIVE' (on) or 'DOWN' (off)
 * Num_dinos (integer) - This is the number of dinosaurs currently in the cage.
 
 ### API Endpoints ###
@@ -32,7 +32,7 @@ This API will expose the following RESTful endpoints:
 | GET /dinosaurs | List all dinosaurs in the park |
 | POST /dinosaurs | Add/Import a new dinosaur to Jurassic Park |
 | POST /dinosaurs/filter | Filter dinosaurs by parameters |
-| POST /dinosaurs/add_to_cage | Move dinosaur to designated cage |
+| POST /dinosaurs/move_to_cage | Move dinosaur to designated cage |
 | GET /dinosaurs/:id | Show the details of a specific dinosaur |
 | PUT /dinosaurs/:id | Update a specific dinosaur |
 | DELETE /dinosaurs/:id | Remove a specific dinosaur from Jurassic Park |
