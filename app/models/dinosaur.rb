@@ -1,5 +1,10 @@
 class Dinosaur < ApplicationRecord
-  belongs_to :cage
   # validations
-  validates_presence_of :name, :is_carnivore, :species
+  validates_presence_of :name, :species
+
+  # helper methods
+
+  def is_carnivore?
+    return self.is_carnivore
+  end
 end
