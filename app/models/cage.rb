@@ -1,5 +1,4 @@
 class Cage < ApplicationRecord
-  has_many :dinosaurs
   # validations
   validates_presence_of :capacity
 
