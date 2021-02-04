@@ -21,14 +21,22 @@ class CagesController < ApplicationController
   def filter
     if params[:status] == 'DOWN'
       @cages = Cage.powered_off
-    else
+    elsif params[:status] == 'ACTIVE'
       @cages = Cage.powered_on
+    else
+      raise Exception.new('Can only filter for statues that are "DOWN" or "ACTIVE"')
     end
     json_response(@cages)
   end
 
   # PUT /cages/:id
   def update
+    ## edge case verification
+    if params.has_key?(:status) && params[:status] == 'DOWN' && @cage.num_dinos > 0
+      raise Exception.new("Cannot shut down cage with dinosaurs still in it")
+      return
+    end
+
     @cage.update(cage_params)
     json_response(@cage)
   end
@@ -56,7 +64,7 @@ class CagesController < ApplicationController
 
   def set_num_dinos
     Cage.all.each do | cage |
-      cage.num_dinos = cage.total_count
+      cage.num_dinos = Dinosaur.where({id: cage.id}).count
     end
   end
 end

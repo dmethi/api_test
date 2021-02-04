@@ -4,4 +4,7 @@ Rails.application.routes.draw do
   resources :dinosaurs
 
   post 'cages/filter', to: 'cages#filter'
+  post 'dinosaurs/filter_by_species', to: 'dinosaurs#filter_by_species'
+  post 'dinosaurs/filter_by_cage', to: 'dinosaurs#filter_by_cage'
+  put "dinosaurs/:id/move_to_cage", to: 'dinosaurs#move_to_cage'
 end
