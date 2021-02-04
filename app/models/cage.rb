@@ -6,10 +6,4 @@ class Cage < ApplicationRecord
   scope :powered_on, -> {where(:status => 'ACTIVE')}
   scope :powered_off, -> {where(:status => 'DOWN')}
 
-  # helper methods
-
-  # getters + setters
-
-  # setting basic parameters to ensure
-
 end
