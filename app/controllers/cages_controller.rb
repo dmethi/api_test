@@ -62,9 +62,4 @@ class CagesController < ApplicationController
     @cage = Cage.find(params[:id])
   end
 
-  def set_num_dinos
-    Cage.all.each do | cage |
-      cage.num_dinos = Dinosaur.where({id: cage.id}).count
-    end
-  end
 end
