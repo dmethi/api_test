@@ -40,7 +40,7 @@ This API will expose the following RESTful endpoints:
 
 ### General Usage Tips ###
 * You cannot update a dinosaur's cage while calling the general dinosaur update function. Moving a dinosaur from cage to cage is a specialized function with restrictions, so you must call PUT /dinosaurs/:id/move_to_cage and input the cage that you wish the dinosaur to move to.
-* With filtration, you can only filter cages by their power status and you can filter dinosaurs only by their cage and their species. For example, if you want to find all the dinosaurs in Cage 3, you would call POST /dinosaurs/filter_by_cage and enter the json object { ":cage": 3 }.
+* With filtration, you can only filter cages by their power status and you can filter dinosaurs only by their cage and their species. For example, if you want to find all the dinosaurs in Cage 3, you would call POST /dinosaurs/filter_by_cage and enter the json object { "cage": 3 }.
 
 ### Testing ###
 These tests use RSpec, FactoryBot, and Faker to generate fake dinosaurs and cages. While the tests are not very thorough (especially for the filtration and moving dinosaurs functionality), they highlight my attempt at using these tools to generate and run test cases. Since the Faker didn't have dinosaur species names, I ended up using Beer brands to represent species differentiation and ended up using some examples of these in my manual tests, so you may see some dinosaurs with the species of Heineken, for example (I'm more familiar with Beer brands than dinosaur species...lol).
